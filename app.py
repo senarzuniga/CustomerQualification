@@ -4,6 +4,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+from utils.session_manager import SessionManager
+
+# INICIALIZAR SESIÓN AL INICIO
+SessionManager.init_session()
+
 # Page configuration
 st.set_page_config(
     page_title="Customer Qualification Agent",
@@ -11,16 +16,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-# Initialize session state
-if 'uploaded_data' not in st.session_state:
-    st.session_state.uploaded_data = None
-if 'processed_data' not in st.session_state:
-    st.session_state.processed_data = None
-if 'enriched_data' not in st.session_state:
-    st.session_state.enriched_data = None
-if 'api_key' not in st.session_state:
-    st.session_state.api_key = ""
 
 # Custom CSS
 st.markdown("""
@@ -34,16 +29,23 @@ st.markdown("""
 with st.sidebar:
     st.title("🎯 Customer Qualification")
     st.markdown("---")
-    st.markdown("### ⚙️ Configuración")
-    st.session_state.api_key = st.text_input("OpenAI API Key", type="password", help="Opcional")
+    
+    # Mostrar estado de datos
+    st.markdown("### 📊 Estado de Sesión")
+    if SessionManager.has_data():
+        data = SessionManager.get_uploaded_data()
+        st.success(f"✅ Datos cargados: {len(data)} registros")
+        st.metric("Columnas", len(data.columns))
+        if len(st.session_state.file_names) > 0:
+            st.write("**Archivos:**")
+            for fname in st.session_state.file_names:
+                st.write(f"• {fname}")
+    else:
+        st.warning("⚠️ Sin datos cargados")
     
     st.markdown("---")
-    st.markdown("### 📊 Estado")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric("Cargados", "Sí" if st.session_state.uploaded_data is not None else "No")
-    with col2:
-        st.metric("Procesados", "Sí" if st.session_state.processed_data is not None else "No")
+    st.markdown("### ⚙️ Configuración")
+    st.session_state.api_key = st.text_input("OpenAI API Key", type="password", value=st.session_state.api_key)
 
 # Main content
 st.title("🎯 Customer Qualification Agent")
@@ -53,7 +55,7 @@ st.markdown("---")
 # Info
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.metric("📤 Status", "Listo")
+    st.metric("📤 Status", "✅ Listo")
 with col2:
     st.metric("🔧 Versión", "1.0.0")
 with col3:
@@ -71,14 +73,13 @@ st.markdown("""
 - ✅ **Dashboard Profesional**: KPIs y gráficos
 - ✅ **Exportación**: Excel, CSV, PDF
 
-## 🚀 Inicio Rápido
+## 🚀 Flujo de Uso
 
-1. Ve a **Carga de Datos** en el menú lateral
-2. Carga un archivo Excel, CSV o PDF
-3. Procesa y valida automáticamente
-4. Enriquece con datos de mercado
-5. Exporta reportes profesionales
-6. ¡Usa los insights para tomar decisiones!
+1. **Carga de Datos** → Sube tus archivos
+2. **Procesamiento** → Limpia y valida automáticamente
+3. **Enriquecimiento** → Agrega datos de mercado
+4. **Analytics** → Analiza y visualiza
+5. **Exportación** → Descarga reportes profesionales
 
 ---
 
