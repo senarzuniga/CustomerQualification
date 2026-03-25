@@ -2,6 +2,7 @@
 import pandas as pd
 from utils.data_processor import DataProcessor
 import logging
+import traceback
 
 st.set_page_config(page_title="Carga de Datos", page_icon="📤")
 
@@ -51,15 +52,19 @@ if uploaded_files:
                     with col2:
                         st.metric("Columnas", len(processed_data.columns))
                     with col3:
-                        null_pct = (processed_data.isnull().sum().sum() / (len(processed_data) * len(processed_data.columns)) * 100)
+                        null_pct = (processed_data.isnull().sum().sum() / (len(processed_data) * len(processed_data.columns)) * 100) if len(processed_data) > 0 else 0
                         st.metric("Datos Válidos", f"{100 - null_pct:.1f}%")
                     
                     st.info("✅ Los datos están guardados en sesión. Ve a 'Procesamiento' para verlos.")
                 else:
-                    st.error("❌ No se pudieron procesar los datos")
+                    st.error("❌ No se pudieron procesar los datos - DataFrame vacío")
+                    st.warning("Verifica que el archivo tenga datos válidos")
+                    
             except Exception as e:
                 st.error(f"❌ Error procesando datos: {str(e)}")
-                st.write(f"Detalles: {str(e)}")
+                st.error(f"Traceback: {traceback.format_exc()}")
+                with st.expander("📋 Detalles técnicos"):
+                    st.code(traceback.format_exc())
 else:
     st.info("📌 Carga archivos Excel, CSV o PDF para comenzar")
     st.markdown("""
@@ -67,4 +72,8 @@ else:
     - **Excel**: .xlsx, .xls
     - **CSV**: Valores separados por comas
     - **PDF**: Archivos PDF
+    
+    ### ¿Qué necesitas?
+    - Encabezados (header) en la primera fila
+    - Datos de leads, contactos o empresas
     """)
