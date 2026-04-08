@@ -1,3 +1,4 @@
+import html
 import streamlit as st
 
 # ── Brand colours (mirrors .streamlit/config.toml) ──────────────────────────
@@ -15,9 +16,12 @@ CHART_PALETTE = [
 
 def metric_card(label: str, value: str, subtitle: str = "", color: str = PRIMARY) -> None:
     """Render a styled metric card with a coloured left border."""
+    safe_label    = html.escape(str(label))
+    safe_value    = html.escape(str(value))
+    safe_subtitle = html.escape(str(subtitle)) if subtitle else ""
     subtitle_html = (
-        f"<div style='font-size:0.78rem;color:#888;margin-top:2px;'>{subtitle}</div>"
-        if subtitle else ""
+        f"<div style='font-size:0.78rem;color:#888;margin-top:2px;'>{safe_subtitle}</div>"
+        if safe_subtitle else ""
     )
     st.markdown(
         f"""
@@ -30,9 +34,9 @@ def metric_card(label: str, value: str, subtitle: str = "", color: str = PRIMARY
             margin-bottom:8px;
         ">
             <div style="font-size:0.78rem;color:#666;text-transform:uppercase;
-                        letter-spacing:0.05em;">{label}</div>
+                        letter-spacing:0.05em;">{safe_label}</div>
             <div style="font-size:1.6rem;font-weight:700;color:{color};
-                        line-height:1.2;">{value}</div>
+                        line-height:1.2;">{safe_value}</div>
             {subtitle_html}
         </div>
         """,

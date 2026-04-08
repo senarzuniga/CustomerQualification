@@ -72,7 +72,7 @@ for col, values in filters.items():
 total = len(df_full)
 filtered = len(df)
 
-if filters:
+if filters and total > 0:
     st.info(
         f"🔎 Mostrando **{filtered:,}** de **{total:,}** registros "
         f"({filtered / total * 100:.1f}%) con filtros activos"
@@ -256,7 +256,7 @@ display_df = df.head(500)
 if search:
     mask = (
         display_df.astype(str)
-        .apply(lambda row: row.str.contains(search, case=False, na=False))
+        .apply(lambda row: row.str.contains(search, case=False, na=False, regex=False))
         .any(axis=1)
     )
     display_df = display_df[mask]
