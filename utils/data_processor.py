@@ -1,12 +1,11 @@
-﻿import pandas as pd
+import pandas as pd
 import numpy as np
 from PyPDF2 import PdfReader
-import logging
 from io import BytesIO
 from typing import List, Optional
+from utils.logging_config import get_logger
 
-logging.basicConfig(level="INFO")
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 class DataProcessor:
     """Procesar y limpiar datos de archivos Excel, CSV y PDF"""
