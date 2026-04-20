@@ -61,27 +61,35 @@ with col2:
 with col3:
     st.metric("✅ APIs", "12+")
 
-st.info("ℹ️ Usa el menú lateral para navegar entre las diferentes funcionalidades")
+st.info("ℹ️ Usa el menu lateral para navegar entre las diferentes funcionalidades")
 
 st.markdown("""
-## 📋 Características Principales
+## 🏢 Plataforma de Inteligencia Empresarial
 
-- ✅ **Carga Multiformato**: Excel, CSV, PDF
-- ✅ **Procesamiento Inteligente**: Limpieza y validación automática
-- ✅ **Web Scraping Ético**: APIs públicas
-- ✅ **Enriquecimiento IA**: OpenAI GPT-4
-- ✅ **Dashboard Profesional**: KPIs y gráficos
-- ✅ **Exportación**: Excel, CSV, PDF
+### Sistema Multi-Agente de Analisis Estrategico
+| Modulo | Descripcion |
+|--------|-------------|
+| 🏢 **Analisis de Empresa** | Analisis completo con 7 agentes de IA |
+| 📊 **Dashboard Empresas** | Vista consolidada de empresas analizadas |
+| 📄 **Informes** | Exportacion PDF y Excel profesional |
 
-## 🚀 Flujo de Uso
-
-1. **Carga de Datos** → Sube tus archivos
-2. **Procesamiento** → Limpia y valida automáticamente
-3. **Enriquecimiento** → Agrega datos de mercado
-4. **Analytics** → Analiza y visualiza
-5. **Exportación** → Descarga reportes profesionales
+### Flujo de Analisis Estrategico
+1. **Analisis de Empresa** → Introduce el nombre y ejecuta el analisis completo
+2. **7 Agentes IA** → Enriquecimiento, Financiero, Mercado, Competitivo, Estrategico, Valoracion, Informe
+3. **Dashboard** → Consulta y compara empresas analizadas
+4. **Exportacion** → Descarga informes PDF y Excel de nivel consultoria
 
 ---
 
-**Versión**: 1.0.0 | **Autor**: Sénior Arzúniga
+## 📋 Modulo Customer Qualification (Legacy)
+
+- ✅ **Carga Multiformato**: Excel, CSV, PDF
+- ✅ **Procesamiento Inteligente**: Limpieza y validacion automatica
+- ✅ **Enriquecimiento IA**: OpenAI GPT-4
+- ✅ **Dashboard Profesional**: KPIs y graficos
+- ✅ **Exportacion**: Excel, CSV, PDF
+
+---
+
+**Version**: 2.0.0 | **Autor**: Senior Arzuniga
 """)
