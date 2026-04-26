@@ -19,7 +19,7 @@ Customer Qualification Agent es una aplicación Streamlit diseñada para procesa
 
 ### Instalación
 
-\\\ash
+```bash
 # Clonar repositorio
 git clone https://github.com/senarzuniga/CustomerQualification.git
 cd CustomerQualification
@@ -35,21 +35,21 @@ source venv/bin/activate
 
 # Instalar dependencias
 pip install -r requirements.txt
-\\\
+```
 
 ### Ejecución
 
-\\\ash
+```bash
 streamlit run app.py
-\\\
+```
 
-Abre tu navegador en \http://localhost:8501\
+Abre tu navegador en [http://localhost:8501](http://localhost:8501)
 
 ## 📁 Estructura del Proyecto
 
-\\\
+```
 CustomerQualification/
-├���─ app.py                    # Aplicación principal
+├── app.py                    # Aplicación principal
 ├── streamlit_app.py         # Para Streamlit Cloud
 ├── config.py                # Configuración
 ├── requirements.txt         # Dependencias
@@ -78,11 +78,11 @@ CustomerQualification/
 │   ├── docker-compose.yml
 │   └── streamlit_cloud_deploy.md
 └── logs/
-\\\
+```
 
 ## 📊 Flujo de Trabajo
 
-\\\
+```
 1. 📤 CARGA DE DATOS
    ↓
 2. 🔍 PROCESAMIENTO
@@ -92,17 +92,65 @@ CustomerQualification/
 4. 📊 ANÁLISIS
    ↓
 5. 💾 EXPORTACIÓN
-\\\
+```
 
 ## ☁️ Despliegue en Streamlit Cloud
 
-Ver: \deployment/streamlit_cloud_deploy.md\
+Ver: [deployment/streamlit_cloud_deploy.md](deployment/streamlit_cloud_deploy.md)
 
 ## 🐳 Despliegue con Docker
 
-\\\ash
+```bash
 docker-compose up --build
-\\\
+```
+
+## 🛠️ Development Environment Setup
+
+### Prerequisites
+
+- Python 3.8+
+- Git
+
+### Setting Up the Development Environment
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/senarzuniga/CustomerQualification.git
+   cd CustomerQualification
+   ```
+
+2. **Create a virtual environment**
+   ```bash
+   python -m venv venv
+   ```
+
+3. **Activate the virtual environment**
+   - **Windows**:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - **Mac/Linux**:
+     ```bash
+     source venv/bin/activate
+     ```
+
+4. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### IDE Configuration
+
+- **Recommended IDE**: Visual Studio Code
+- **Extensions**:
+  - Python (for syntax highlighting and IntelliSense)
+  - Pylint (for code linting)
+  - GitLens (for Git integration)
+
+### Common Issues
+
+- Ensure that the virtual environment is activated before running any Python scripts.
+- If you encounter issues with dependencies, try running `pip install --upgrade pip` before installing the requirements.
 
 ## 📝 Licencia
 
